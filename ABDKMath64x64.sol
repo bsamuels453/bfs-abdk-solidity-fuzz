@@ -411,6 +411,7 @@ library ABDKMath64x64 {
         while (y != 0) {
           require (absXShift < 64);
 
+          // if y is even?
           if (y & 0x1 != 0) {
             absResult = absResult * absX >> 127;
             resultShift += absXShift;
@@ -707,7 +708,7 @@ library ABDKMath64x64 {
         if (xl < lo) xh -= 1;
         xl -= lo; // We rely on overflow behavior here
 
-        assert (xh == hi >> 128);
+        require (xh == hi >> 128);
 
         result += xl / y;
       }
